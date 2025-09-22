@@ -12,13 +12,13 @@ public class Budget
         BudgetCategories = budgetCategories;
     }
 
-    public void AddCategory()
+    public void AddCategory(Catagory catagoryToAdd)
     {
-
+        BudgetCategories.Add(catagoryToAdd);
     }
 
-    public void RemoveCategory()
-    { 
-        
+    public void RemoveCategory(Catagory catagoryToRemove)
+    {
+        BudgetCategories.Remove(catagoryToRemove);
     }
 }
