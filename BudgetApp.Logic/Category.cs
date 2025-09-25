@@ -1,8 +1,8 @@
 ﻿namespace BudgetApp.Logic;
-public class Catagory
+public class Category
 {
-    public const decimal FOOD_TAX_RATE = 0.07M;
-    public const decimal NON_FOOD_TAX_RATE = 0.19M;
+    public const decimal FOOD_TAX_RATE = 0.03M;
+    public const decimal NON_FOOD_TAX_RATE = 0.0635M;
     public bool IsFoodCatagory { get; init; }
     public string Name { get; private set; }
     public List<Item> Items { get; }
@@ -33,7 +33,7 @@ public class Catagory
         }
     }
 
-    public Catagory(string name, decimal budget, bool isFoodCatagory)
+    public Category(string name, decimal budget, bool isFoodCatagory)
     {
         Items = new();
         Name = name;
