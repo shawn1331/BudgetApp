@@ -6,10 +6,9 @@ public class Budget
     public List<Category> BudgetCategories = new List<Category>();
     public decimal TotalSpent => BudgetCategories.Sum(category => category.Spent);
     public decimal RemainingBudget => TotalBudget - TotalSpent;
-    public Budget(decimal totalBudget, List<Category> budgetCategories)
+    public Budget(decimal totalBudget)
     {
         TotalBudget = totalBudget;
-        BudgetCategories = budgetCategories;
     }
 
     public void AddCategory(Category catagoryToAdd)
