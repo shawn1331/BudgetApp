@@ -121,7 +121,7 @@ static void CreateNewCategory(App app)
     bool isFoodCatagory = GetCatagoryType();
     decimal catagoryBudget = GetCatagoryBudget();
     Category catagory = new(catagoryName, catagoryBudget, isFoodCatagory);
-   app?.Budget?.Categories.Add(catagory);
+   app?.Budget?.BudgetCategories.Add(catagory);
     Console.WriteLine($"Great! {catagory.Name} was created.     ");
 }
 
@@ -154,7 +154,7 @@ static void PrintSummaryTable(App app)
     Console.WriteLine($"{"Category",-20} {"Budget",15} {"Spent",15} {"Remaining",15}");
     Console.WriteLine(new string('=', 70));
 
-    foreach (var category in app?.Budget?.Categories)
+    foreach (var category in app?.Budget?.BudgetCategories)
     {
         Console.WriteLine($"{category.Name,-20} {category.Budget,15:C} {category.Spent,15:C} {category.Remaining,15:C}-Overspent");
 
@@ -170,9 +170,9 @@ static void PrintSummaryTable(App app)
         Console.WriteLine(new string('-', 70));
     }
 
-    decimal totalBudget = app.Budget.Categories.Sum(c => c.Budget);
-    decimal totalSpent = app.Budget.Categories.Sum(c => c.Spent);
-    decimal totalRemaining = app.Budget.Categories.Sum(c => c.Remaining);
+    decimal totalBudget = app.Budget.BudgetCategories.Sum(c => c.Budget);
+    decimal totalSpent = app.Budget.BudgetCategories.Sum(c => c.Spent);
+    decimal totalRemaining = app.Budget.BudgetCategories.Sum(c => c.Remaining);
 
     Console.WriteLine($"{"TOTAL",-20} {totalBudget,15:C} {totalSpent,15:C} {totalRemaining,15:C}");
     Console.WriteLine(new string('=', 70));
@@ -216,7 +216,7 @@ static bool Navigation(App app)
 
 static Category ChooseCategory(App app)
 {
-    if (app?.Budget?.Categories.Count == 0)
+    if (app?.Budget?.BudgetCategories.Count == 0)
     {
         Console.WriteLine("You need to add a category before adding items");
         CreateNewCategory(app);
@@ -225,14 +225,14 @@ static Category ChooseCategory(App app)
     else
     {
         Console.WriteLine("Which category would you like to add an item?");
-        for (int index = 0; index < app?.Budget?.Categories.Count; index++)
+        for (int index = 0; index < app?.Budget?.BudgetCategories.Count; index++)
         {
-            Console.WriteLine($"[{index + 1}] {app?.Budget?.Categories[index].Name}");
+            Console.WriteLine($"[{index + 1}] {app?.Budget?.BudgetCategories[index].Name}");
         }
         string? userResponse = Console.ReadLine();
         try
         {
-            return app?.Budget?.Categories[Int32.Parse(userResponse) - 1];
+            return app?.Budget?.BudgetCategories[Int32.Parse(userResponse) - 1];
         }
         catch
         {
