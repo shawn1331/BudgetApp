@@ -2,23 +2,23 @@ using BudgetApp.Logic;
 
 public class Budget
 {
-    public decimal TotalBudget { get; init; }
-    public List<Category> Categories { get; }
-    public decimal TotalSpent => Categories.Sum(category => category.Spent);
+    public decimal TotalBudget;
+    public List<Catagory> BudgetCategories = new List<Catagory>();
+    public decimal TotalSpent => BudgetCategories.Sum(category => category.Spent);
     public decimal RemainingBudget => TotalBudget - TotalSpent;
-    public Budget(decimal totalBudget)
+    public Budget(decimal totalBudget, List<Catagory> budgetCategories)
     {
-        Categories = new();
         TotalBudget = totalBudget;
+        BudgetCategories = budgetCategories;
     }
 
-    public void AddCategory(Category catagoryToAdd)
+    public void AddCategory(Catagory catagoryToAdd)
     {
-        Categories.Add(catagoryToAdd);
+        BudgetCategories.Add(catagoryToAdd);
     }
 
-    public void RemoveCategory(Category catagoryToRemove)
+    public void RemoveCategory(Catagory catagoryToRemove)
     {
-        Categories.Remove(catagoryToRemove);
+        BudgetCategories.Remove(catagoryToRemove);
     }
 }
